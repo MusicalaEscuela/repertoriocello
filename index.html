@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Musicala - Repertorio para Cello</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="topbar">
+    <div class="topbar__left">
+      <img class="logo" src="./logo.png" alt="Logo Musicala">
+      <h1>Musicala - Repertorio para Cello</h1>
+    </div>
+
+    <div class="topbar__right">
+      <button class="seg active" id="viewCardsBtn" type="button">Tarjetas</button>
+      <button class="seg" id="viewTableBtn" type="button">Tabla</button>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <div class="container">
+    <!-- Controls -->
+    <div class="controls">
+      <div class="search">
+        <input type="text" id="searchInput" placeholder="Buscar en el repertorio… (ej: titanic, villancicos, carol of the bells)">
+        <button class="btn btn--ghost" id="clearBtn" type="button">Limpiar</button>
+      </div>
+
+      <div class="control">
+        <label for="guideSelect">Guía</label>
+        <select id="guideSelect"></select>
+      </div>
+
+      <div class="control">
+        <label for="sortSelect">Orden</label>
+        <select id="sortSelect">
+          <option value="name-asc">Nombre (A → Z)</option>
+          <option value="name-desc">Nombre (Z → A)</option>
+          <option value="level-asc">Nivel (bajo → alto)</option>
+          <option value="level-desc">Nivel (alto → bajo)</option>
+          <option value="genre-asc">Género (A → Z)</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label for="levelMin">Nivel mínimo</label>
+        <select id="levelMin">
+          <option value="0">⭐ 0+</option>
+          <option value="1">⭐ 1+</option>
+          <option value="2">⭐ 2+</option>
+          <option value="3">⭐ 3+</option>
+          <option value="4">⭐ 4+</option>
+          <option value="5">⭐ 5</option>
+        </select>
+      </div>
+
+      <div class="meta">
+        <span class="pill" id="countPill">Cargando…</span>
+        <span class="pill" id="progressPill">Progreso: 0 / 0</span>
+        <span class="status" id="statusLabel"></span>
+      </div>
+    </div>
+
+    <!-- View: Cards -->
+    <section class="view" id="cardsView">
+      <div class="grid" id="cardsGrid"></div>
+
+      <div class="empty hidden" id="emptyCards">
+        <div class="empty__title">No hay resultados</div>
+        <div>Prueba con otra búsqueda o baja el filtro de nivel.</div>
+      </div>
+    </section>
+
+    <!-- View: Table -->
+    <section class="view hidden" id="tableView">
+      <div class="table-wrapper">
+        <table id="csvTable">
+          <thead>
+            <tr id="headerRow"></tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="empty hidden" id="emptyTable">
+        <div class="empty__title">No hay filas para mostrar</div>
+        <div>La tabla también respeta búsqueda y nivel mínimo.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalOverlay" class="modalOverlay hidden">
+    <div class="modal">
+      <div class="modal__head">
+        <div>
+          <div id="modalTitle" class="modal__title">—</div>
+          <div id="modalMeta" class="modal__meta">—</div>
+        </div>
+        <button class="iconBtn" id="modalClose" type="button" title="Cerrar">✕</button>
+      </div>
+
+      <pre id="modalContent" class="modal__content"></pre>
+      <div id="modalAction" class="modal__action"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    © 2025 Musicala. Todos los derechos reservados.
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
